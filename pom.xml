@@ -15,6 +15,7 @@
 
     <modules>
         <module>buildah-binary</module>
+        <module>buildah-core</module>
     </modules>
 
     <licenses>
