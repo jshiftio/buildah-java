@@ -8,5 +8,5 @@ import java.util.List;
 public interface CliExecutor {
     List<String> execute(Command command);
 
-    List<String> execute(Path directory, Command command);
+    List<String> execute(Path buildahDirectory, Path runcDirctory, Command command);
 }

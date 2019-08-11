@@ -2,6 +2,10 @@ package io.jshift.buildah.core;
 
 import io.jshift.buildah.api.BuildahConfiguration;
 import io.jshift.buildah.api.LocationResolver;
+import io.jshift.buildah.core.commands.BuildahFromCommand;
+import io.jshift.buildah.core.commands.BuildahImagesCommand;
+import io.jshift.buildah.core.commands.BuildahListContainersCommand;
+import io.jshift.buildah.core.commands.BuildahRunCommand;
 import io.jshift.buildah.core.resolvers.LocationResolverChain;
 
 import java.io.IOException;
@@ -27,7 +31,7 @@ public class Buildah {
         this.buildahConfiguration = buildahConfiguration;
         this.locationResolverChain = new LocationResolverChain();
         install();
-        //buildahExecutor = new BuildahExecutor(this.buildahHome, this.buildahConfiguration);
+        buildahExecutor = new BuildahExecutor(this.buildahHome, this.runcHome, this.buildahConfiguration);
     }
 
     public Buildah(CliExecutor buildahExecutor) {
@@ -48,6 +52,22 @@ public class Buildah {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    public BuildahFromCommand.Builder createContainer(String baseImageName) {
+        return new BuildahFromCommand.Builder(baseImageName, this.buildahExecutor);
+    }
+
+    public BuildahListContainersCommand.Builder listContainers() {
+        return new BuildahListContainersCommand.Builder(this.buildahExecutor);
+    }
+
+    public BuildahImagesCommand.Builder listImages() {
+        return new BuildahImagesCommand.Builder(this.buildahExecutor);
+    }
+
+    public BuildahRunCommand.Builder run(String containerName, String commandRun) {
+        return new BuildahRunCommand.Builder(containerName, commandRun, this.buildahExecutor);
     }
 
 }
