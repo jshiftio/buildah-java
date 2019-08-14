@@ -41,9 +41,6 @@ public class BuildahListContainersCommand extends AbstractRunnableCommand<Builda
             arguments.add(ONLY_ID);
         }
 
-        if(globalParametersSupport != null) {
-            arguments.addAll(globalParametersSupport.getCliCommand());
-        }
         return arguments;
     }
 

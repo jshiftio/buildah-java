@@ -47,9 +47,6 @@ public class BuildahImagesCommand extends AbstractRunnableCommand<Void> {
             arguments.add(DIGESTS);
         }
 
-        if(globalParametersSupport != null) {
-            arguments.addAll(globalParametersSupport.getCliCommand());
-        }
         return arguments;
     }
 

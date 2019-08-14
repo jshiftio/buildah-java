@@ -8,10 +8,17 @@ import java.util.List;
 public class BuildahRunCommand extends AbstractRunnableCommand<Void> {
 
     private static final String COMMAND_NAME = "run";
+    private static final String TTY = "--tty";
+    private static final String HOSTNAME = "--hostname";
 
+    private Boolean tty = Boolean.FALSE;
     private String containerName;
     private String commandRun;
+    private List<String> commandOptions;
+    private String hostname;
     private GlobalParametersSupport globalParametersSupport;
+
+
     protected BuildahRunCommand(CliExecutor buildahExecutor, String containerName, String commandRun) {
         super(buildahExecutor);
         this.containerName = containerName;
@@ -23,13 +30,22 @@ public class BuildahRunCommand extends AbstractRunnableCommand<Void> {
     public List<String> getCliCommand() {
         List<String> arguments = new ArrayList();
         arguments.add(COMMAND_NAME);
+
+        if(hostname != null) {
+            arguments.add(HOSTNAME);
+            arguments.add(hostname);
+        }
+
+        if(tty != null && tty.booleanValue()) {
+            arguments.add(TTY);
+        }
+
         arguments.add(this.containerName);
         arguments.add(this.commandRun);
 
-        if (this.globalParametersSupport != null) {
-            arguments.addAll(this.globalParametersSupport.getCliCommand());
+        if(commandOptions != null) {
+            arguments.addAll(commandOptions);
         }
-
         return arguments;
     }
 
@@ -40,9 +56,24 @@ public class BuildahRunCommand extends AbstractRunnableCommand<Void> {
             this.buildahRunCommand = new BuildahRunCommand(buildahExecutor, containerName, commandRun);
         }
 
+        public BuildahRunCommand.Builder commandOptions(List<String> commandOptions) {
+            this.buildahRunCommand.commandOptions = commandOptions;
+            return this;
+        }
+
+        public BuildahRunCommand.Builder tty(boolean tty) {
+            this.buildahRunCommand.tty = tty;
+            return this;
+        }
+
+        public BuildahRunCommand.Builder hostname(String hostname) {
+            this.buildahRunCommand.hostname = hostname;
+            return this;
+        }
+
         public BuildahRunCommand build() {
-            this.buildahRunCommand.globalParametersSupport = this.buildGlobalParameters();
-            return this.buildahRunCommand;
+            buildahRunCommand.globalParametersSupport = this.buildGlobalParameters();
+            return buildahRunCommand;
         }
     }
 }

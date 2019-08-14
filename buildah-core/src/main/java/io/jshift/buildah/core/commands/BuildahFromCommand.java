@@ -20,11 +20,8 @@ public class BuildahFromCommand extends AbstractRunnableCommand<Void>{
     public List<String> getCliCommand() {
         List<String> arguments = new ArrayList();
         arguments.add(COMMAND_NAME);
-        arguments.add(this.baseImageName);
 
-        if (this.globalParametersSupport != null) {
-            arguments.addAll(this.globalParametersSupport.getCliCommand());
-        }
+        arguments.add(this.baseImageName);
 
         return arguments;
     }
@@ -37,8 +34,8 @@ public class BuildahFromCommand extends AbstractRunnableCommand<Void>{
         }
 
         public BuildahFromCommand build() {
-            this.buildahFromCommand.globalParametersSupport = this.buildGlobalParameters();
-            return this.buildahFromCommand;
+            buildahFromCommand.globalParametersSupport = this.buildGlobalParameters();
+            return buildahFromCommand;
         }
     }
 }
