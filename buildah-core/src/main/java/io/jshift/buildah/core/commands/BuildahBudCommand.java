@@ -161,7 +161,7 @@ public class BuildahBudCommand extends AbstractRunnableCommand<Void> {
             return this;
         }
 
-        public BuildahBudCommand.Builder targetImae(String targetImage) {
+        public BuildahBudCommand.Builder targetImage(String targetImage) {
             this.buildahBudCommand.targetImage = targetImage;
             return this;
         }

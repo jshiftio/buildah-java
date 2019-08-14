@@ -28,7 +28,4 @@ public class FileManager {
         final Path buildahTempDirectory = Files.createTempDirectory("buildah");
         return copyToLocation(buildahTempDirectory);
     }
-
-
-
 }

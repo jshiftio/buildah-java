@@ -23,7 +23,7 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
     private List<String> annotationList;
     private String volumePath;
     private String workingDir;
-    private String port;
+    private List<String> portList;
 
     private GlobalParametersSupport globalParametersSupport;
 
@@ -74,9 +74,11 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
             arguments.add(workingDir);
         }
 
-        if(port != null) {
-            arguments.add(PORT);
-            arguments.add(port);
+        if(portList != null) {
+            for(String port:portList) {
+                arguments.add(PORT);
+                arguments.add(port);
+            }
         }
 
         arguments.add(containerId);
@@ -121,8 +123,8 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
             return this;
         }
 
-        public BuildahConfigCommand.Builder port(String port) {
-            this.buildahConfigCommand.port = port;
+        public BuildahConfigCommand.Builder port(List<String> portList) {
+            this.buildahConfigCommand.portList = portList;
             return this;
         }
 

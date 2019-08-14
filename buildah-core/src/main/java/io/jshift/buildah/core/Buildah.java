@@ -14,6 +14,7 @@ import io.jshift.buildah.core.commands.BuildahListContainersCommand;
 import io.jshift.buildah.core.commands.BuildahLoginCommand;
 import io.jshift.buildah.core.commands.BuildahLogoutCommand;
 import io.jshift.buildah.core.commands.BuildahMountCommand;
+import io.jshift.buildah.core.commands.BuildahPullCommand;
 import io.jshift.buildah.core.commands.BuildahPushCommand;
 import io.jshift.buildah.core.commands.BuildahRemoveCommand;
 import io.jshift.buildah.core.commands.BuildahRemoveImageCommand;
@@ -133,5 +134,9 @@ public class Buildah {
 
     public BuildahBudCommand.Builder bud(String context) {
         return new BuildahBudCommand.Builder(buildahExecutor, context);
+    }
+
+    public BuildahPullCommand.Builder pull(String imageName) {
+        return new BuildahPullCommand.Builder(imageName, buildahExecutor);
     }
 }
