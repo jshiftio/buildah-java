@@ -5,7 +5,7 @@ import io.jshift.buildah.core.CliExecutor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuildahFromCommand extends AbstractRunnableCommand<Void>{
+public class BuildahFromCommand extends AbstractRunnableCommand<String>{
 
     private static final String COMMAND_NAME = "from";
 
@@ -13,7 +13,7 @@ public class BuildahFromCommand extends AbstractRunnableCommand<Void>{
     private GlobalParametersSupport globalParametersSupport;
 
     private BuildahFromCommand(CliExecutor buildahExecutor, String baseImageName) {
-        super(buildahExecutor);
+        super(buildahExecutor, BuildahFromCommand::parse);
         this.baseImageName = baseImageName;
     }
     @Override
@@ -26,6 +26,10 @@ public class BuildahFromCommand extends AbstractRunnableCommand<Void>{
         return arguments;
     }
 
+    protected static String parse(List<String> consoleOutput) {
+        final String output = String.join(" ", consoleOutput.toArray(new String[consoleOutput.size()]));
+        return output;
+    }
     public static class Builder extends GlobalParametersSupport.Builder<BuildahFromCommand.Builder> {
         private BuildahFromCommand buildahFromCommand;
 
