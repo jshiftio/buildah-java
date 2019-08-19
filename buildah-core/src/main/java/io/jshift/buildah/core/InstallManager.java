@@ -32,7 +32,7 @@ public class InstallManager {
         return path;
     }
 
-    void uninstall() throws IOException {
+    public void uninstall(Path path) throws IOException {
         if (Files.exists(path)) {
             Files.delete(path);
         }
