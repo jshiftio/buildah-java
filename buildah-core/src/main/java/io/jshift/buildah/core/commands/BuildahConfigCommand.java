@@ -15,6 +15,7 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
     private static final String VOLUME = "--volume";
     private static final String WORKING_DIR = "--workingdir";
     private static final String PORT = "--port";
+    private static final String ENTRYPOINT = "--entrypoint";
 
     private String author;
     private String containerId;
@@ -24,6 +25,7 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
     private String volumePath;
     private String workingDir;
     private List<String> portList;
+    private List<String> entrypointList;
 
     private GlobalParametersSupport globalParametersSupport;
 
@@ -81,6 +83,16 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
             }
         }
 
+        if(entrypointList != null) {
+            arguments.add(ENTRYPOINT);
+            String entrypointString = "[";
+            for(String e:entrypointList) {
+                entrypointString += "\"e\"";
+            }
+            entrypointString+="]";
+            arguments.add(entrypointString);
+        }
+
         arguments.add(containerId);
         return arguments;
     }
@@ -125,6 +137,11 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
 
         public BuildahConfigCommand.Builder port(List<String> portList) {
             this.buildahConfigCommand.portList = portList;
+            return this;
+        }
+
+        public BuildahConfigCommand.Builder entrypoint(List<String> entrypointList) {
+            this.buildahConfigCommand.entrypointList = entrypointList;
             return this;
         }
 
