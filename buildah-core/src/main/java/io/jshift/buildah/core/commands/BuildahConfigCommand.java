@@ -4,6 +4,7 @@ import io.jshift.buildah.core.CliExecutor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
 
@@ -86,9 +87,7 @@ public class BuildahConfigCommand extends AbstractRunnableCommand<Void> {
         if(entrypointList != null) {
             arguments.add(ENTRYPOINT);
             String entrypointString = "[";
-            for(String e:entrypointList) {
-                entrypointString += "\"e\"";
-            }
+            entrypointString += entrypointList.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", "));
             entrypointString+="]";
             arguments.add(entrypointString);
         }
