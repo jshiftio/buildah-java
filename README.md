@@ -1,5 +1,9 @@
 # Buildah-java
 
+[![Circle CI](https://circleci.com/gh/jshiftio/buildah-java/tree/master.svg?style=shield)](https://circleci.com/gh/jshiftio/buildah-java/tree/master)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jshiftio_buildah-java&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=jshiftio_buildah-java)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=jshiftio_buildah-java&metric=sqale_index)](https://sonarcloud.io/dashboard?id=jshiftio_buildah-java)
+
 This library provides a wrapper for [Buildah](https://github.com/containers/buildah) which is a CLI tool for building OCI images.
 
 Buildah-java is composed of a `core` module which is the front interface to execute Buildah commands.
