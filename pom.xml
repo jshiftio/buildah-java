@@ -11,24 +11,41 @@
   <packaging>pom</packaging>
 
   <name>buildah-java</name>
-  <description>buildah integration in Java.</description>
-
-  <modules>
-    <module>buildah-binary</module>
-    <module>buildah-core</module>
-  </modules>
+  <description>Buildah integration in Java</description>
+  <url>http://github.com/jshiftio/buildah-java</url>
 
   <licenses>
     <license>
-      <name>Apache License Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <comments>A business-friendly OSS license</comments>
     </license>
   </licenses>
 
   <developers>
     <developer>
+      <id>geeks</id>
+      <name>Jshift Development Team</name>
+      <email>jshift@googlegroups.com</email>
+      <organization>jshift</organization>
+      <organizationUrl>http://jshift.io/</organizationUrl>
+    </developer>
+    <developer>
       <id>theexplorist</id>
     </developer>
   </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/jshiftio/buildah-java.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jshiftio/buildah-java.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>git://github.com/jshiftio/buildah-java.git</url>
+  </scm>
+
+
+  <modules>
+    <module>buildah-binary</module>
+    <module>buildah-core</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
