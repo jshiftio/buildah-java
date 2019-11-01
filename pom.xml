@@ -53,8 +53,6 @@
     <junit.version>5.4.0</junit.version>
     <jgit.version>5.2.1.201812262042-r</jgit.version>
     <zt-exec.version>1.11</zt-exec.version>
-    <snakeyml.version>1.24</snakeyml.version>
-    <awaitility.version>3.1.6</awaitility.version>
   </properties>
 
   <modules>
@@ -100,19 +98,9 @@
         <version>${jgit.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.awaitility</groupId>
-        <artifactId>awaitility</artifactId>
-        <version>${awaitility.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.zeroturnaround</groupId>
         <artifactId>zt-exec</artifactId>
         <version>${zt-exec.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.yaml</groupId>
-        <artifactId>snakeyaml</artifactId>
-        <version>${snakeyml.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

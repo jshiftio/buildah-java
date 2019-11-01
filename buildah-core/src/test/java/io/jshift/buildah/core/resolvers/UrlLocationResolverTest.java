@@ -1,5 +1,6 @@
 package io.jshift.buildah.core.resolvers;
 
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -54,8 +55,6 @@ public class UrlLocationResolverTest {
         requestConnection.connect () ;
         int code = requestConnection.getResponseCode() ;
         requestConnection.disconnect();
-
-        return code > 199 && code < 300;
-
+        return code >= HttpURLConnection.HTTP_OK && code < HttpURLConnection.HTTP_MULT_CHOICE;
     }
 }
