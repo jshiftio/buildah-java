@@ -4,6 +4,7 @@ import io.jshift.buildah.core.CliExecutor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BuildahBudCommand extends AbstractRunnableCommand<Void> {
     private static final String COMMAND_NAME = "bud";
@@ -18,6 +19,8 @@ public class BuildahBudCommand extends AbstractRunnableCommand<Void> {
     private static final String MEMORY = "--memory";
     private static final String CPU_PERIOD = "--cpu-period";
     private static final String CPU_QUOTA = "--cpu-quota";
+    private static final String BUILD_ARG = "--build-arg";
+    private static final String BUILD_ARG_FMT = "%s=%s";
 
     List<String> dockerfileList;
     private String dockerfileContext;
@@ -31,6 +34,7 @@ public class BuildahBudCommand extends AbstractRunnableCommand<Void> {
     private String memory;
     private String cpuPeriod;
     private String cpuQuota;
+    private Map<String, String> buildArgs;
 
     private GlobalParametersSupport globalParametersSupport;
     protected BuildahBudCommand(CliExecutor buildahExecutor, String dockerfileContext) {
@@ -86,6 +90,13 @@ public class BuildahBudCommand extends AbstractRunnableCommand<Void> {
 
         if(tlsVerify != null && tlsVerify.booleanValue()) {
             arguments.add(TLS_VERIFY);
+        }
+
+        if(buildArgs != null) {
+            for(Map.Entry<String, String> buildArg : buildArgs.entrySet()) {
+              arguments.add(BUILD_ARG);
+              arguments.add(String.format(BUILD_ARG_FMT, buildArg.getKey(), buildArg.getValue()));
+            }
         }
 
         if(dockerfileList != null) {
@@ -163,6 +174,11 @@ public class BuildahBudCommand extends AbstractRunnableCommand<Void> {
 
         public BuildahBudCommand.Builder targetImage(String targetImage) {
             this.buildahBudCommand.targetImage = targetImage;
+            return this;
+        }
+
+        public BuildahBudCommand.Builder buildArgs(Map<String, String> buildArgs) {
+            this.buildahBudCommand.buildArgs = buildArgs;
             return this;
         }
 
