@@ -41,12 +41,6 @@
     <url>git://github.com/jshiftio/buildah-java.git</url>
   </scm>
 
-
-  <modules>
-    <module>buildah-binary</module>
-    <module>buildah-core</module>
-  </modules>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -56,9 +50,15 @@
     <minimaljson.version>0.9.5</minimaljson.version>
     <buildah.version>1.9.3-dev</buildah.version>
     <runc.version>1.0.1-dev</runc.version>
-    <junit.version>5.4.0-RC1</junit.version>
+    <junit.version>5.4.0</junit.version>
     <jgit.version>5.2.1.201812262042-r</jgit.version>
+    <zt-exec.version>1.11</zt-exec.version>
   </properties>
+
+  <modules>
+    <module>buildah-binary</module>
+    <module>buildah-core</module>
+  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -100,7 +100,7 @@
       <dependency>
         <groupId>org.zeroturnaround</groupId>
         <artifactId>zt-exec</artifactId>
-        <version>1.11</version>
+        <version>${zt-exec.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
