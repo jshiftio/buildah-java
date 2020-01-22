@@ -19,6 +19,7 @@ import io.jshift.buildah.core.commands.BuildahPushCommand;
 import io.jshift.buildah.core.commands.BuildahRemoveCommand;
 import io.jshift.buildah.core.commands.BuildahRemoveImageCommand;
 import io.jshift.buildah.core.commands.BuildahRunCommand;
+import io.jshift.buildah.core.commands.BuildahTagCommand;
 import io.jshift.buildah.core.commands.BuildahVersionCommand;
 import io.jshift.buildah.core.resolvers.LocationResolverChain;
 
@@ -138,5 +139,9 @@ public class Buildah {
 
     public BuildahPullCommand.Builder pull(String imageName) {
         return new BuildahPullCommand.Builder(imageName, buildahExecutor);
+    }
+
+    public BuildahTagCommand.Builder tag(String imageName) {
+        return new BuildahTagCommand.Builder(buildahExecutor, imageName);
     }
 }
