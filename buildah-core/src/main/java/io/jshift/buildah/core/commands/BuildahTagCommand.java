@@ -4,7 +4,6 @@ import io.jshift.buildah.core.CliExecutor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BuildahTagCommand extends AbstractRunnableCommand<Void> {
     private static final String COMMAND_NAME = "tag";
